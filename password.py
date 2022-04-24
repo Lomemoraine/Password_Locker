@@ -1,3 +1,4 @@
+#users class
 class User:
     '''
     class that generates new instances of users
@@ -56,3 +57,16 @@ class User:
         method that returns the user_List
         '''
         return cls.user_List
+    
+#credentials class
+class Credentials:
+    '''
+    class that generate new instances of credentials
+    '''
+    credential_List = []
+    def __init__(self,accountName,username,password):
+        self.accountName = accountName
+        self.username = username
+        self.password = passwordlast_name
+        
+    
