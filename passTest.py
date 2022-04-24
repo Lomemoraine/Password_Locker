@@ -111,12 +111,18 @@ class TestUser(unittest.TestCase):
         test_credential.save_credential()
         account_exists = Credentials.credential_exist("TestAccount")
         self.assertTrue(account_exists)
-    def test_display_all_contacts(self):
+    def test_display_all_users(self):
         '''
         method that returns a list of all users saved
         '''
 
         self.assertEqual(User.display_users(),User.user_List)
+    def test_display_all_accounts(self):
+        '''
+        method that returns a list of all account's credentials saved
+        '''
+
+        self.assertEqual(Credentials.display_accounts(),Credentials.credential_List)
     
 if __name__ == "__main__":
         unittest.main()
