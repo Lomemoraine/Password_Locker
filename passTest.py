@@ -1,13 +1,20 @@
 import unittest
-from password import User
+from password import Credentials, User
 class TestUser(unittest.TestCase):
     def setUp(self):
         self.new_user = User('Twitter','Lorraine','Chepkemoi','lorraine@gmail.com')
+        self.new_credential = Credentials('Twitter','gift','1234')
     def test_init(self):
         self.assertEqual(self.new_user.accountName,"Twitter")
         self.assertEqual(self.new_user.first_name,"Lorraine")
         self.assertEqual(self.new_user.last_name,"Chepkemoi")
         self.assertEqual(self.new_user.email,"lorraine@gmail.com")
+    def test_init(self):
+        self.assertEqual(self.new_credential.accountName,"Twitter")
+        self.assertEqual(self.new_credential.username,"gift")
+        self.assertEqual(self.new_credential.password,"1234")
+       
+        
     def tearDown(self):
         '''
         tearDown method that does clean up after each test case has run.

@@ -67,6 +67,7 @@ class Credentials:
     def __init__(self,accountName,username,password):
         self.accountName = accountName
         self.username = username
-        self.password = passwordlast_name
+        self.password = password
+    
         
     
