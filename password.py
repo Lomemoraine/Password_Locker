@@ -2,6 +2,8 @@
 import random
 import string
 
+import pyperclip
+
 
 class User:
     '''
@@ -127,4 +129,12 @@ class Credentials:
         method that returns the credentials_List
         '''
         return cls.credential_List
+    
+    # @classmethod
+    # def copy_credentials(cls, account):
+    #     '''
+    #     method that copies returned account's credentials to clipboard
+    #     '''
+    #     found_account = Credentials.find_by_accountName(account)
+    #     pyperclip.copy(found_account.username, found_account.password)
     
