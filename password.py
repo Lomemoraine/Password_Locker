@@ -36,3 +36,17 @@ class User:
         for user in cls.user_List:
             if user.first_name == username:
                 return user
+    @classmethod
+    def user_exist(cls,username):
+        '''
+        Method that checks if a user exists from the user_List.
+        Args:
+            username: name to search for
+        Returns :
+            Boolean: True or false depending if the user exists
+        '''
+        for user in cls.user_List:
+            if user.first_name == username:
+                    return True
+
+        return False
