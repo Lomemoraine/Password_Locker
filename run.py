@@ -1,6 +1,20 @@
 #!/usr/bin/env python3.9
 import string
-from password import Credentials, User
+import random
+import array
+from typing import Any
+from passwordd import Credentials, User
+def generate_password():
+    length = 8
+    lower = string.ascii_lowercase
+    upper = string.ascii_uppercase
+    num = string.digits
+    symbols = string.punctuation
+    all = lower + upper + num + symbols
+    temp = random.sample(all,length)
+    password = "".join(temp)
+    return password
+
 def create_user(fname,lname,email,password):
     '''
     Function to create a new user
@@ -12,11 +26,11 @@ def save_user(user):
     Function to save user
     '''
     user.save_user()
-def generate_password(credential):
-    '''
-    Function to generate password
-    '''
-    credential.generate_password()
+# def generate_password(credential):
+#     '''
+#     Function to generate password
+#     '''
+#     credential.generate_password()
 # def del_user(user):
 #     '''
 #     Function to delete a user
@@ -27,11 +41,11 @@ def find_user(first_name):
     Function that finds a user by their fisrt name and returns the user
     '''
     return User.find_by_first_name(first_name)
-def check_existing_users(username):
+def check_existing_users(first_name):
     '''
     Function that check if a user exists with that username and return a Boolean
     '''
-    return User.user_exist(username)
+    return User.user_exist(first_name)
 # def display_users():
 #     '''
 #     Function that returns all the saved users
@@ -71,6 +85,7 @@ def delete_credential(credential):
 
 def main():
     while True:
+       
         # print("Hello Welcome to Password Locker. What is your name?")
         # user_name = input()
         print("""Hello esteemed user.Welcome to PassWord Locker .
@@ -79,13 +94,13 @@ def main():
         print('\n')
         short_code = input().lower()
         if short_code == 'li':
-            username = input("Enter your Username: ").lower()
+            first_name = input("Enter your first name as your Username: ").lower()
             password = input("Enter your password: ")
-            if check_existing_users(username):
-                search_user = find_user(username)
-                response = search_user
+            if check_existing_users(first_name):
+                search_user = find_user(first_name)
+                
                 print('-'*20)
-                print(f"Hello{response} You have been succesfully logged in")
+                print(f"Hello , You have been succesfully logged in")
                 print("-"*20)
                 while True:
                     print("\n")
@@ -96,15 +111,19 @@ def main():
                         print("-" * 20)
                         accountName =input("Enter account whose credentials youu want to store: ".lower())
                         username = input("Enter username you want to use for the account: ")
-                        print(f"Use generated password for your account or manually generate. Generate or manual")
-                        answer = input().lower()
-                        if answer == "generate":
-                            password == str(generate_password())
-                            print("-" * 20)
-                        elif answer == "manual":
-                            password == input("Enter your preferred password: ")
+                        print(f"Use generated password for your {accountName} account or manually generate.Shortcode3: yes or no ")
+                        if credential_exist(accountName):
+                            search_user = find_user(accountName)
+                            print("Account with that account name is already existing,create new account")
                         else:
-                            print("PLease try again")
+                            shortcode = input().lower()
+                            if shortcode == "yes":
+                                password = str(generate_password())
+                                print("-"*20)
+                            elif shortcode == "no":
+                                password = input("Enter your preferred password: ")
+                            else:
+                                print("Please try again")
                         save_credential(create_credentials(accountName,username,password))
                         print(f"{accountName} credentials have been saved")
                         print("\n")
@@ -133,12 +152,13 @@ def main():
                         
                     
             else:
-                print('\n')
+                print('-'*20)
                 print("User does not exist")
-                print("\n")
+                print('-'*20)
         elif short_code == 'ca':
+            
             print("\n")
-            print("New password Locker user")
+            print("Create a new user account")
             print("-" * 20)
             print("Enter your first name")
             first_name = input()
@@ -149,25 +169,33 @@ def main():
             print("Enter your email address")
             email_address = input()
             print('\n')
-            print(f"Use generated password for your account or manually generate. Generate or manual")
-            answer2 = input().lower()
-            password =""
-            if answer2 == "Generate":
-                password == str(generate_password())
-                print("-" * 20)
-            elif answer2 == "manual":
-                password == input("Enter your preferred password: ")
+            if check_existing_users(first_name):
+                search_user = find_user(first_name)
+                print("user with that name  already exists,try a different name")
             else:
-                print("PLease try again")
+                    
+                    print("Automatically generate a password or create your own? Shortcode3: yes or no")
+                    shortcode = input().lower()
+                    if shortcode == "yes":
+                        password = generate_password()
+                        print("-"*20)
+                    elif shortcode == "no":
+                        password = input("Enter your preferred password: ")
+                    else:
+                        print("Please try again")
+            
+            
             save_user(create_user(first_name, last_name,email_address,password ) )
             print("-"*20)
             print(f'Account for {first_name} {last_name} has been successfully created')
             print(f'Your password is : {password}')
             print("-"*20)
-            print("Please login to manage your credentials")
+            print("\n")
+            print("Please proceed to login by typing li")
             
         else:
             print("I really didn't get that. Please use the short codes")
+        
                             
                  
             
