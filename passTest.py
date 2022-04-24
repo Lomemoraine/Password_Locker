@@ -14,8 +14,20 @@ class TestUser(unittest.TestCase):
         '''
         User.user_List = []
     def test_save_user(self):
+        '''
+        save_user method to test if user is being saved to the user_List
+        '''
         self.new_user.save_user()
         self.assertEqual(len(User.user_List),1)
+    def test_save_multiple_users(self):
+        '''
+        test_save_multiple_contact to check if we can save multiple contact
+        objects to our contact_list
+        '''
+        self.new_user.save_user()
+        test_user = User("TestAccount","userfirstname","userlastname","test@user.com") # new user
+        test_user.save_user()
+        self.assertEqual(len(User.user_List),2)
     
 if __name__ == "__main__":
         unittest.main()
