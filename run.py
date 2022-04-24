@@ -1,36 +1,40 @@
 #!/usr/bin/env python3.9
 from password import Credentials, User
-def create_user(account,fname,lname,email):
+def create_user(fname,lname,email,password):
     '''
     Function to create a new user
     '''
-    new_user = User(account,fname,lname,email)
+    new_user = User(fname,lname,email,password)
     return new_user
 def save_user(user):
     '''
     Function to save user
     '''
     user.save_user()
-def del_user(user):
-    '''
-    Function to delete a user
-    '''
-    user.delete_user()
-def find_user(username):
-    '''
-    Function that finds a user by username and returns the user
-    '''
-    return User.find_by_username(username)
-def check_existing_users(username):
-    '''
-    Function that check if a user exists with that username and return a Boolean
-    '''
-    return User.user_exists(username)
-def display_users():
-    '''
-    Function that returns all the saved users
-    '''
-    return User.display_users()
+# def del_user(user):
+#     '''
+#     Function to delete a user
+#     '''
+#     user.delete_user()
+# def find_user(username):
+#     '''
+#     Function that finds a user by username and returns the user
+#     '''
+#     return User.find_by_username(username)
+# def check_existing_users(username):
+#     '''
+#     Function that check if a user exists with that username and return a Boolean
+#     '''
+#     return User.user_exists(username)
+# def display_users():
+#     '''
+#     Function that returns all the saved users
+#     '''
+#     return User.display_users()
+def create_credentials(accountName,username, password):
+    new_credential = Credentials(accountName,username,password)
+    return new_credential
+    
 def main():
     print("Hello Welcome to Password Locker. What is your name?")
     user_name = input()
