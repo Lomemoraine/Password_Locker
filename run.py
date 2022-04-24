@@ -38,4 +38,34 @@ def main():
     print('\n')
     while True:
         print("Use these short codes : cc - create a new credential, dc - display credentials, fc -find a credential, ex -exit the passWord Locker ")
-        short_code = input().lower()
+        short_code = input()
+        if short_code == 'cc':
+            print("New account Credentials")
+            print("-" * 10)
+
+            print("Account name ....")
+            a_name = input()
+
+            print("Username ...")
+            u_name = input()
+            print(f'Generate password for{a_name} Enter 1 to accept or 2 to reject')
+            answer = print('\n')
+            if answer == "1":
+               password = str(Credentials.generate_password())
+               print(f'Your generated password for{a_name} is{password}\n')
+                
+            elif answer == "2":
+                print(f'Enter password for{a_name}\n')
+                password = input('\n' )
+            else:
+                print('PLease use the given codes')
+        
+        
+            print("New account Credentials have been saved")
+            
+if __name__ == '__main__':
+
+    main()
+            
+            
+           

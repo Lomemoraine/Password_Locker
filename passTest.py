@@ -4,13 +4,13 @@ import pyperclip
 from password import Credentials, User
 class TestUser(unittest.TestCase):
     def setUp(self):
-        self.new_user = User('account','Lorraine','Chepkemoi','lorraine@gmail.com')
+        self.new_user = User('Lorraine','Chepkemoi','lorraine@gmail.com','gifty12')
         self.new_credential = Credentials('Twitter','gift','1234')
     def test_init(self):
-        self.assertEqual(self.new_user.accountName,"account")
         self.assertEqual(self.new_user.first_name,"Lorraine")
         self.assertEqual(self.new_user.last_name,"Chepkemoi")
         self.assertEqual(self.new_user.email,"lorraine@gmail.com")
+        self.assertEqual(self.new_user.password,"gifty12")
     def test_init(self):
         self.assertEqual(self.new_credential.accountName,"Twitter")
         self.assertEqual(self.new_credential.username,"gift")
@@ -41,7 +41,7 @@ class TestUser(unittest.TestCase):
         objects to our user_List
         '''
         self.new_user.save_user()
-        test_user = User("TestAccount","userfirstname","userlastname","test@user.com") # new user
+        test_user = User("userfirstname","userlastname","test@user.com","12345") # new user
         test_user.save_user()
         self.assertEqual(len(User.user_List),2)
 #method to enbale users save more than one account's credentials
@@ -59,7 +59,7 @@ class TestUser(unittest.TestCase):
         test_delete_user method to test if we can remove a user from our user_List
         '''
         self.new_user.save_user()
-        test_user = User("TestAccount","userfirstname","userlastname","test@user.com") # new user
+        test_user = User("userfirstname","userlastname","test@user.com","12345") # new user
         test_user.save_user()
         self.new_user.delete_user()# Deleting a user object
         self.assertEqual(len(User.user_List),1)
@@ -79,7 +79,7 @@ class TestUser(unittest.TestCase):
         '''
 
         self.new_user.save_user()
-        test_user = User("TestAccount","userfirstname","userlastname","test@user.com") # new user
+        test_user = User("userfirstname","userlastname","test@user.com","12345") # new user
         test_user.save_user()
         found_user = User.find_by_username("userfirstname")
         self.assertEqual(found_user.email,test_user.email)
@@ -99,7 +99,7 @@ class TestUser(unittest.TestCase):
         '''
 
         self.new_user.save_user()
-        test_user = User("TestAccount","userfirstname","userlastname","test@user.com") # new user
+        test_user = User("userfirstname","userlastname","test@user.com","12345") # new user
         test_user.save_user()
         user_exists = User.user_exist("userfirstname")
         self.assertTrue(user_exists)
@@ -125,13 +125,13 @@ class TestUser(unittest.TestCase):
         '''
 
         self.assertEqual(Credentials.display_accounts(),Credentials.credential_List)
-    # def test_copy_credentials(self):
-    #     '''
-    #     Test to confirm that we are copying credentials from a found account
-    #     '''
-    #     self.new_credential.save_credential() 
-    #     Credentials.copy_credentials("Twitter")
-    #     self.assertEqual(self.new_credential.username,self.new_credential.password, pyperclip.paste())
+    def test_copy_credentials(self):
+        '''
+        Test to confirm that we are copying credentials from a found account
+        '''
+        self.new_credential.save_credential() 
+        Credentials.copy_credentials("Twitter")
+        self.assertEqual(self.new_credential.password,pyperclip.paste())
     
 if __name__ == "__main__":
         unittest.main()

@@ -11,11 +11,11 @@ class User:
     
     '''
     user_List =[]
-    def __init__(self,accountName,first_name,last_name,email):
-        self.accountName = accountName
+    def __init__(self,first_name,last_name,email,password):
         self.first_name = first_name
         self.last_name = last_name
         self.email = email
+        self.password = password
     def save_user(self):
         '''
         save_user method that saves users into user_List
@@ -130,11 +130,11 @@ class Credentials:
         '''
         return cls.credential_List
     
-    # @classmethod
-    # def copy_credentials(cls, account):
-    #     '''
-    #     method that copies returned account's credentials to clipboard
-    #     '''
-    #     found_account = Credentials.find_by_accountName(account)
-    #     pyperclip.copy(found_account.username, found_account.password)
+    @classmethod
+    def copy_credentials(cls, account):
+        '''
+        method that copies returned account's credentials to clipboard
+        '''
+        found_account = Credentials.find_by_accountName(account)
+        pyperclip.copy(found_account.password)
     
