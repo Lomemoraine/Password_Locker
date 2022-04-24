@@ -30,7 +30,7 @@ class User:
         
         User.user_List.remove(self)
     @classmethod
-    def find_by_username(cls, username):
+    def find_by_first_name(cls, first_name):
         '''
         Method that takes in a username and returns a user that matches that username.
 
@@ -41,10 +41,10 @@ class User:
         '''
 
         for user in cls.user_List:
-            if user.first_name == username:
+            if user.first_name == first_name:
                 return user
     @classmethod
-    def user_exist(cls,username):
+    def user_exist(cls,first_name):
         '''
         Method that checks if a user exists from the user_List.
         Args:
@@ -53,7 +53,7 @@ class User:
             Boolean: True or false depending if the user exists
         '''
         for user in cls.user_List:
-            if user.first_name == username:
+            if user.first_name == first_name:
                     return True
 
         return False
@@ -124,7 +124,7 @@ class Credentials:
 
         return False
     @classmethod
-    def display_accounts(cls):
+    def display_credentials(cls):
         '''
         method that returns the credentials_List
         '''

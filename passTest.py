@@ -79,7 +79,7 @@ class TestUser(unittest.TestCase):
         test_credential.save_credential()
         self.new_credential.delete_credential()# Deleting a account's  credentials object
         self.assertEqual(len(Credentials.credential_List),1)
-    def test_find_user_by_username(self):
+    def test_find_user_by_first_name(self):
         '''
         test to check if we can find a user by their first_name and display information
         '''
@@ -87,7 +87,7 @@ class TestUser(unittest.TestCase):
         self.new_user.save_user()
         test_user = User("userfirstname","userlastname","test@user.com","12345") # new user
         test_user.save_user()
-        found_user = User.find_by_username("userfirstname")
+        found_user = User.find_by_first_name("userfirstname")
         self.assertEqual(found_user.email,test_user.email)
     def test_find_acountcredentials_by_accountName(self):
         '''
@@ -99,7 +99,7 @@ class TestUser(unittest.TestCase):
         test_credential.save_credential()
         found_account = Credentials.find_by_accountName("TestAccount")
         self.assertEqual(found_account.password,test_credential.password)
-    def test_user_exists(self):
+    def test_user_exist(self):
         '''
         test to check if we can return a Boolean  if we cannot find the user.
         '''
@@ -125,7 +125,7 @@ class TestUser(unittest.TestCase):
         '''
 
         self.assertEqual(User.display_users(),User.user_List)
-    def test_display_all_accounts(self):
+    def test_display_all_credentials(self):
         '''
         method that returns a list of all account's credentials saved
         '''
