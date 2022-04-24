@@ -35,13 +35,22 @@ class TestUser(unittest.TestCase):
         self.assertEqual(len(Credentials.credential_List),1)
     def test_save_multiple_users(self):
         '''
-        test_save_multiple_contact to check if we can save multiple contact
-        objects to our contact_list
+        test_save_multiple_users to check if we can save multiple users
+        objects to our user_List
         '''
         self.new_user.save_user()
         test_user = User("TestAccount","userfirstname","userlastname","test@user.com") # new user
         test_user.save_user()
         self.assertEqual(len(User.user_List),2)
+    def test_save_multiple_credentials(self):
+        '''
+        test_save_multiple_credentials to check if we can save multiple credentials
+        objects to our credential_List
+        '''
+        self.new_credential.save_credential()
+        test_credential = Credentials("TestAccount","username","1234",) # new credentials
+        test_credential.save_credential()
+        self.assertEqual(len(Credentials.credential_List),2)
     def test_delete_user(self):
         '''
         test_delete_user method to test if we can remove a user from our user_List
