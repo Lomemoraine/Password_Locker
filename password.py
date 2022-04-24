@@ -9,3 +9,9 @@ class User:
         self.first_name = first_name
         self.last_name = last_name
         self.email = email
+def save_user(self):
+    '''
+    Method that saves users into user_List
+    
+    '''
+    User.user_List.append(self)
