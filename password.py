@@ -1,4 +1,8 @@
 #users class
+import random
+import string
+
+
 class User:
     '''
     class that generates new instances of users
@@ -68,6 +72,13 @@ class Credentials:
         self.accountName = accountName
         self.username = username
         self.password = password
-    
+#method to generate password using the random module and string module
+    def generate_password(self, size=8, char=string.ascii_uppercase+string.ascii_lowercase+string.digits):
+            """
+            function that generates passwords
+            """
+
+            generate_pass = ''.join(random.choice(char)for _ in range(size))#convert elements of an iterable into a string
+            return generate_pass
         
     
