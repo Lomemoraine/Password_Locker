@@ -42,6 +42,7 @@ class TestUser(unittest.TestCase):
         test_user = User("TestAccount","userfirstname","userlastname","test@user.com") # new user
         test_user.save_user()
         self.assertEqual(len(User.user_List),2)
+#method to enbale users save more than one account's credentials
     def test_save_multiple_credentials(self):
         '''
         test_save_multiple_credentials to check if we can save multiple credentials
@@ -60,6 +61,16 @@ class TestUser(unittest.TestCase):
         test_user.save_user()
         self.new_user.delete_user()# Deleting a user object
         self.assertEqual(len(User.user_List),1)
+#method to delete account credentials 
+    def test_delete_credential(self):
+        '''
+        test_delete_credential method to test if we can remove account's credentials from our credential_List
+        '''
+        self.new_credential.save_credential()
+        test_credential = Credentials("TestAccount","username","1234",) # new credentials
+        test_credential.save_credential()
+        self.new_credential.delete_credential()# Deleting a account's  credentials object
+        self.assertEqual(len(Credentials.credential_List),1)
     def test_find_user_by_username(self):
         '''
         test to check if we can find a user by their first_name and display information
@@ -70,6 +81,16 @@ class TestUser(unittest.TestCase):
         test_user.save_user()
         found_user = User.find_by_username("userfirstname")
         self.assertEqual(found_user.email,test_user.email)
+    def test_find_acountcredentials_by_accountName(self):
+        '''
+        test to check if we can find an account by their accountName and display credentials
+        '''
+
+        self.new_credential.save_credential()
+        test_credential = Credentials("TestAccount","username","1234",) # new credentials
+        test_credential.save_credential()
+        found_account = Credentials.find_by_accountName("TestAccount")
+        self.assertEqual(found_account.password,test_credential.password)
     def test_user_exists(self):
         '''
         test to check if we can return a Boolean  if we cannot find the user.
