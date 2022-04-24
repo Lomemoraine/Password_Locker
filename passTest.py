@@ -20,12 +20,19 @@ class TestUser(unittest.TestCase):
         tearDown method that does clean up after each test case has run.
         '''
         User.user_List = []
+        Credentials.credential_List = []
     def test_save_user(self):
         '''
         save_user method to test if user is being saved to the user_List
         '''
         self.new_user.save_user()
         self.assertEqual(len(User.user_List),1)
+    def test_save_credential(self):
+        '''
+        save_credential method to test if credential is being saved to the credential_List
+        '''
+        self.new_credential.save_credential()
+        self.assertEqual(len(Credentials.credential_List),1)
     def test_save_multiple_users(self):
         '''
         test_save_multiple_contact to check if we can save multiple contact

@@ -75,10 +75,16 @@ class Credentials:
 #method to generate password using the random module and string module
     def generate_password(self, size=8, char=string.ascii_uppercase+string.ascii_lowercase+string.digits):
             """
-            function that generates passwords
+            generate_password function to generate passwords
             """
 
             generate_pass = ''.join(random.choice(char)for _ in range(size))#convert elements of an iterable into a string
             return generate_pass
+    def save_credential(self):
+        '''
+        save_credential method that saves credentials into credential_List
+        
+        '''
+        Credentials.credential_List.append(self)
         
     
