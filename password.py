@@ -11,7 +11,28 @@ class User:
         self.email = email
     def save_user(self):
         '''
-        Method that saves users into user_List
+        save_user method that saves users into user_List
         
         '''
         User.user_List.append(self)
+    def delete_user(self):
+
+        '''
+        delete_user method deletes a saved user from the user_List
+        '''
+        
+        User.user_List.remove(self)
+    @classmethod
+    def find_by_username(cls, username):
+        '''
+        Method that takes in a username and returns a user that matches that username.
+
+        Args:
+            username: name to search for
+        Returns :
+            first name of user that matches that username.
+        '''
+
+        for user in cls.user_List:
+            if user.first_name == username:
+                return user
