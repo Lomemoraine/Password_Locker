@@ -2,6 +2,8 @@
 ## Author
 
 * Lorraine Chepkemoi
+## Contact info
+* slack profile[Lorraine Chepkemoi]
 
 ## Description
 
