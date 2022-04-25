@@ -1,8 +1,10 @@
 #!/usr/bin/env python3.9
 import string
 import random
-import array
+
 from typing import Any
+
+import pyperclip
 from passwordd import Credentials, User
 def generate_password():
     length = 8
@@ -210,7 +212,8 @@ def main():
             print("-"*20)
             print(f'Account for {first_name} {last_name} has been successfully created')
             print(f'Your password is : {password}')
-            # (password).copy_credentials()
+            pyperclip.copy(password)
+            # print(pyperclip.paste())
             print("-"*20)
             print("\n")
             print("Please proceed to login by typing li")
