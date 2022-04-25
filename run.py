@@ -82,6 +82,12 @@ def delete_credentials(credential):
     Function to delete credentials that are no longer needed
     '''
     credential.delete_credentials()
+def copy_credentials(account):
+    """
+    function that copies the password using the pyperclip framework
+    
+    """
+    return Credentials.copy_credentials(account)
 
 def main():
     while True:
@@ -147,20 +153,22 @@ def main():
                              print("The credential you are searching for does not exist")
                     elif short_code1 == "del":
                         
-                         search_account = input("Enter account name you are looking for: ").lower()
+                         search_account = input("Enter account name for the account you want to delete: ").lower()
                          if credential_exist(search_account):
                              find_account =find_credential(search_account)
                              find_account.delete_credentials()
                              print("-"*20)
-                             print(f"{find_account.accountName} { find_account.username} { find_account.password} has been deleted")
+                             print(f" Your {find_account.accountName}  has been deleted")
                              print("-"*20)
                          else:
-                             print("The credential you are searching for does not exist")
+                             print("The credential you are deleting  does not exist")
                              
                              
                     elif short_code1 == "ex":
                         input("Bye...")
                         break
+                    else:
+                        print("Use the short codes given")
                             
                         
                     
@@ -202,6 +210,7 @@ def main():
             print("-"*20)
             print(f'Account for {first_name} {last_name} has been successfully created')
             print(f'Your password is : {password}')
+            # (password).copy_credentials()
             print("-"*20)
             print("\n")
             print("Please proceed to login by typing li")
