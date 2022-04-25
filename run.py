@@ -77,11 +77,11 @@ def credential_exist(account):
     return Credentials.credential_exist(account)
 
 #Display all credentials for a particular user
-def delete_credential(credential): 
+def delete_credentials(credential): 
     '''
     Function to delete credentials that are no longer needed
     '''
-    credential.delete_credential()
+    credential.delete_credentials()
 
 def main():
     while True:
@@ -104,7 +104,7 @@ def main():
                 print("-"*20)
                 while True:
                     print("\n")
-                    print("Use these short codes : cc - create a new credential, dc - display credentials, fc -find a credential, ex -exit the passWord Locker ")
+                    print("Use these short codes : cc - create a new credential, dc - display credentials, fc -find a credential,del - delete credential, ex -exit the passWord Locker ")
                     short_code1 = input().lower()
                     if short_code1 == 'cc':
                         print("New account Credentials")
@@ -145,6 +145,19 @@ def main():
                              print("-"*20)
                          else:
                              print("The credential you are searching for does not exist")
+                    elif short_code1 == "del":
+                        
+                         search_account = input("Enter account name you are looking for: ").lower()
+                         if credential_exist(search_account):
+                             find_account =find_credential(search_account)
+                             find_account.delete_credentials()
+                             print("-"*20)
+                             print(f"{find_account.accountName} { find_account.username} { find_account.password} has been deleted")
+                             print("-"*20)
+                         else:
+                             print("The credential you are searching for does not exist")
+                             
+                             
                     elif short_code1 == "ex":
                         input("Bye...")
                         break
